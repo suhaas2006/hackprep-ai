@@ -19,6 +19,6 @@ python app.py
 
 Live Links
 Demo: https://hackprep-ai.onrender.com (deploying)
-Repo: https://github.com/YOURUSERNAME/hackprep-ai
+Repo: https://github.com/suhaas2006/hackprep-ai
 
 
