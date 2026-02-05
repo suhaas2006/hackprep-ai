@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HackPrep AI</title>
+    <style>
+        body{font-family:sans-serif;max-width:800px;margin:50px auto;padding:20px;background:#f5f5f5}
+        input,button{padding:12px;font-size:16px;width:100%;margin:10px 0}
+        #output{padding:20px;background:white;border-radius:8px;margin-top:20px}
+        .powered-by{color:#666;font-size:14px}
+    </style>
+</head>
+<body>
+    <h1>🚀 HackPrep AI</h1>
+    <p>You.com-powered hackathon project planner</p>
+    
+    <input id="input" placeholder="Enter: You.com APIs + Python solo student + 16 days">
+    <button onclick="generate()">Generate Plan</button>
+    
+    <div id="output">Click button to see magic ✨</div>
+    
+    <div class="powered-by">Powered by You.com APIs | DeveloperWeek 2026</div>
+
+    <script>
+        function generate(){
+            document.getElementById('output').innerHTML = `
+                <h3>📋 Your Hackathon Plan</h3>
+                <p><strong>Title:</strong> HackPrep AI (self-generated!)</p>
+                <p><strong>Tech:</strong> Flask + You.com API + HTML</p>
+                <p><strong>Timeline:</strong> MVP Day 1-2, Polish Day 3-16</p>
+                <p>Backend integration coming soon...</p>
+            `;
+        }
+    </script>
+</body>
+</html>
