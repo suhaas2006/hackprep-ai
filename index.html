@@ -7,6 +7,8 @@
         input,button{padding:12px;font-size:16px;width:100%;margin:10px 0}
         #output{padding:20px;background:white;border-radius:8px;margin-top:20px}
         .powered-by{color:#666;font-size:14px}
+        .result {line-height:1.6}
+        .loading {color:#888; font-style:italic}
     </style>
 </head>
 <body>
@@ -21,14 +23,34 @@
     <div class="powered-by">Powered by You.com APIs | DeveloperWeek 2026</div>
 
     <script>
-        function generate(){
-            document.getElementById('output').innerHTML = `
-                <h3>📋 Your Hackathon Plan</h3>
-                <p><strong>Title:</strong> HackPrep AI (self-generated!)</p>
-                <p><strong>Tech:</strong> Flask + You.com API + HTML</p>
-                <p><strong>Timeline:</strong> MVP Day 1-2, Polish Day 3-16</p>
-                <p>Backend integration coming soon...</p>
-            `;
+        async function generate(){
+            document.getElementById('output').innerHTML = '<div class="loading">🔄 Connecting to backend...</div>';
+            
+            try {
+                const input = document.getElementById('input').value;
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({challenge: input})
+                });
+                const data = await response.json();
+                document.getElementById('output').innerHTML = `
+                    <div class="result">
+                        <h3>🎯 Hackathon Project Plan</h3>
+                        <p><strong>🚀 Title:</strong> ${data.title}</p>
+                        <p><strong>💻 Tech Stack:</strong> ${data.tech}</p>
+                        <p><strong>⏱️ Timeline:</strong> ${data.timeline}</p>
+                        <p><strong>📈 Impact:</strong> ${data.impact}</p>
+                    </div>
+                `;
+            } catch(error) {
+                document.getElementById('output').innerHTML = `
+                    <div style="color:#e74c3c">
+                        <h3>⚠️ Local test needed</h3>
+                        <p>Backend not running? Run: <code>python app.py</code></p>
+                    </div>
+                `;
+            }
         }
     </script>
 </body>
